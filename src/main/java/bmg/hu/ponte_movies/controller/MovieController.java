@@ -23,7 +23,7 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MovieListItem>> getMovies() throws Exception {
+    public ResponseEntity<List<MovieListItem>> getMovies() {
         List<MovieListItem> movieListItems = movieService.findMovies();
         return new ResponseEntity<>(movieListItems, HttpStatus.OK);
     }

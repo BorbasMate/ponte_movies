@@ -21,8 +21,10 @@ public class MovieService {
     }
 
 
-    public List<MovieListItem> findMovies() throws Exception {
+    public List<MovieListItem> findMovies() {
         List<MovieListItem> movies = tmdbService.getTopRatedMovies();
+        movies.forEach(tmdbService::getActorsForMovie);
+
         return movies;
     }
 }
