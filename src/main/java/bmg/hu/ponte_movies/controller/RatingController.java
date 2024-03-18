@@ -42,9 +42,9 @@ public class RatingController {
     }
 
     @GetMapping("/{movieId}")
-    public ResponseEntity<List<RatingListItem>> getRatings(@PathVariable Long movieId) {
+    public ResponseEntity<List<RatingListItem>> getAllRatingsForMovie(@PathVariable Long movieId) {
         LOGGER.info("Rating list requested");
-        List<RatingListItem> ratings = ratingService.getAllRatingForProduct(movieId);
+        List<RatingListItem> ratings = ratingService.getAllRatingsForMovie(movieId);
         return new ResponseEntity<>(ratings, HttpStatus.OK);
     }
 

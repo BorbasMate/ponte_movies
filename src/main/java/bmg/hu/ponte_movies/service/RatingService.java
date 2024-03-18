@@ -35,7 +35,7 @@ public class RatingService {
         return rating;
     }
 
-    public List<RatingListItem> getAllRatingForProduct(Long movieId) {
+    public List<RatingListItem> getAllRatingsForMovie(Long movieId) {
         List<Rating> ratingList = ratingRepository.findAllByMovieId(movieId);
         return ratingList.stream().map(rating -> {
             RatingListItem ratingListItem = new RatingListItem();

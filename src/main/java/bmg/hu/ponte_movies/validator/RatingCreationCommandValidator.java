@@ -18,8 +18,8 @@ public class RatingCreationCommandValidator implements Validator {
 
         RatingCreationCommand command = (RatingCreationCommand) target;
 
-        if (command.getText().length() > 255) {
-            errors.rejectValue("text", "rating.text.too.long");
+        if (command.getMovieId() == null) {
+            errors.rejectValue("movieId", "movie.id.not.given");
         }
         if (command.getRatingValue() == null) {
             errors.rejectValue("ratingValue", "rating.value.not.given");
@@ -30,8 +30,8 @@ public class RatingCreationCommandValidator implements Validator {
         if (command.getRatingValue() > 5) {
             errors.rejectValue("ratingValue", "rating.value.too.high");
         }
-        if (command.getMovieId() == null) {
-            errors.rejectValue("movieId", "movie.id.not.given");
+        if (command.getText().length() > 255) {
+            errors.rejectValue("text", "rating.text.too.long");
         }
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         if (!command.getEmail().matches(emailRegex)) {

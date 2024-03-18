@@ -38,4 +38,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+
+
 }

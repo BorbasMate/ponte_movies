@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show_sql: true
+
+logging:
+  level:
+    com.progmasters: debug
+    org.springframework: info
+    org.hibernate: error
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+
+cors-policies: http://localhost:4200, http://127.0.0.1:4200
+
+tmdb:
+  api_key: 84b2674dcba2f54328f0fef9d7abfe44
+  api_baseUrl: https://api.themoviedb.org/3/movie
