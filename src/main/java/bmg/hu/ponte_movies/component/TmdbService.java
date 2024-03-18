@@ -1,6 +1,7 @@
 package bmg.hu.ponte_movies.component;
 
 import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.exception.IllegalTmdbRequestException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +25,9 @@ public class TmdbService {
     @Value("${tmdb.api_key}")
     private String apiKey;
 
+    private static final String HEADER_KEY = "Accept";
+    private static final String HEADER_VALUE = "application/json";
+
     public List<MovieListItem> getTopRatedMovies() {
         try {
             List<MovieListItem> movies = new ArrayList<>();
@@ -31,7 +35,7 @@ public class TmdbService {
             URL url = new URL(apiBaseUrl + "/top_rated?language=en-US&page=1&api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty(HEADER_KEY, HEADER_VALUE);
 
             BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
@@ -59,10 +63,8 @@ public class TmdbService {
             }
 
             return movies;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | JSONException e) {
+            throw new IllegalTmdbRequestException(e.getMessage());
         }
     }
 
@@ -73,7 +75,7 @@ public class TmdbService {
             URL url = new URL(apiBaseUrl + "/" + movieId + "/credits?language=en-US&api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty(HEADER_KEY, HEADER_VALUE);
 
             BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
@@ -92,10 +94,8 @@ public class TmdbService {
                 movie.getCast().add(movieJson.getString("name"));
             }
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | JSONException e) {
+            throw new IllegalTmdbRequestException(e.getMessage());
         }
 
     }
@@ -107,7 +107,7 @@ public class TmdbService {
             URL url = new URL(apiBaseUrl + "/" + movieId + "?language=en-US&api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty(HEADER_KEY, HEADER_VALUE);
 
             BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
@@ -126,10 +126,8 @@ public class TmdbService {
                 movie.getProductionCompanies().add(movieJson.getString("name"));
             }
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | JSONException e) {
+            throw new IllegalTmdbRequestException(e.getMessage());
         }
 
     }
