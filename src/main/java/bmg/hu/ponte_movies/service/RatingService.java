@@ -30,6 +30,7 @@ public class RatingService {
         rating.setRatingValue(command.getRatingValue());
         rating.setText(command.getText());
         rating.setEmail(command.getEmail());
+        ratingRepository.save(rating);
 
         return rating;
     }
