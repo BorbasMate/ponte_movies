@@ -47,6 +47,7 @@ class MovieServiceTest {
         item1.setTitle("Star Wars IV");
         item1.setReleaseDate("1980-01-01");
         item1.setOverView("A new hope");
+        item1.setOriginalLanguage("en");
         item1.setPosterPath("/xxx.jpg");
 
         MovieListItem item2 = new MovieListItem();
@@ -54,6 +55,7 @@ class MovieServiceTest {
         item2.setTitle("Star Wars VII");
         item2.setReleaseDate("2010-01-01");
         item2.setOverView("The force awakens");
+        item2.setOriginalLanguage("en");
         item2.setPosterPath("/yyy.jpg");
 
         when(tmdbServiceMock.getTopRatedMovies()).thenReturn(List.of(item1, item2));

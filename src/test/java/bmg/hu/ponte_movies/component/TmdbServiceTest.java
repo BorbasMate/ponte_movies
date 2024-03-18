@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @SpringBootTest
 class TmdbServiceTest {
 
@@ -136,10 +137,12 @@ class TmdbServiceTest {
 
         // When
 
+
         // Then
         Exception exception = assertThrows(IllegalTmdbRequestException.class,
                 () -> tmdbService.getImagesForMovie(new MovieListItem()));
         assertEquals("no protocol: null/null/images?api_key=null", exception.getMessage());
+
 
     }
 
