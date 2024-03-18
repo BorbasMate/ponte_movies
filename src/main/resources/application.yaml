@@ -32,3 +32,7 @@ logging:
 
 
 cors-policies: http://localhost:4200, http://127.0.0.1:4200
+
+tmdb:
+  api_key: 84b2674dcba2f54328f0fef9d7abfe44
+  api_baseUrl: https://api.themoviedb.org/3/movie
