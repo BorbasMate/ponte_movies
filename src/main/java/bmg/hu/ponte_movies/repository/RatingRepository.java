@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RatingRepsoitory extends JpaRepository<Rating, Long> {
+public interface RatingRepository extends JpaRepository<Rating, Long> {
 
     @Query("select r from Rating r where r.movieId = :movieId order by r.id desc")
     List<Rating> findAllByMovieId(@Param("movieId") Long movieId);
