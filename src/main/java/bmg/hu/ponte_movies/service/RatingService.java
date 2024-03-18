@@ -4,19 +4,17 @@ import bmg.hu.ponte_movies.domain.Rating;
 import bmg.hu.ponte_movies.dto.RatingCreationCommand;
 import bmg.hu.ponte_movies.dto.RatingListItem;
 import bmg.hu.ponte_movies.repository.RatingRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
 public class RatingService {
 
-    private RatingRepository ratingRepository;
+    private final RatingRepository ratingRepository;
 
     @Autowired
     public RatingService(RatingRepository ratingRepository) {

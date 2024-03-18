@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MovieListItem {
 
-    private Long id;
+    private Long movieId;
     private String title;
     private String releaseDate;
     private String overView;

@@ -55,7 +55,7 @@ public class TmdbService {
                 MovieListItem movie = new MovieListItem();
                 movie.setTitle(movieJson.getString("title"));
                 movie.setReleaseDate(movieJson.getString("release_date"));
-                movie.setId(movieJson.getLong("id"));
+                movie.setMovieId(movieJson.getLong("id"));
                 movie.setOverView(movieJson.getString("overview"));
                 movie.setOriginalLanguage(movieJson.getString("original_language"));
                 movie.setPosterPath(movieJson.getString("poster_path"));
@@ -71,7 +71,7 @@ public class TmdbService {
 
     public void getActorsForMovie(MovieListItem movie) {
         try {
-            Long movieId = movie.getId();
+            Long movieId = movie.getMovieId();
 
             URL url = new URL(apiBaseUrl + "/" + movieId + "/credits?language=en-US&api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -103,7 +103,7 @@ public class TmdbService {
 
     public void getProductionCompaniesForMovie(MovieListItem movie) {
         try {
-            Long movieId = movie.getId();
+            Long movieId = movie.getMovieId();
 
             URL url = new URL(apiBaseUrl + "/" + movieId + "?language=en-US&api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -135,7 +135,7 @@ public class TmdbService {
 
     public void getImagesForMovie(MovieListItem movie) {
         try {
-            Long movieId = movie.getId();
+            Long movieId = movie.getMovieId();
 
             URL url = new URL(apiBaseUrl + "/" + movieId + "/images?api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
