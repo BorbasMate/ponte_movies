@@ -1,5 +1,8 @@
 package bmg.hu.ponte_movies.config;
 
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +30,17 @@ public class SpringWebConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("MovieRating APP")
+                        .version("1.0.0")
+                        .description("This is a movie rating application with list of movies and " +
+                                "possibility to rate them. The list is fetched from TMDB api using " +
+                                "the currently top rated movies."));
+    }
+
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(corsPolicies));
@@ -38,7 +52,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 
 
 }
