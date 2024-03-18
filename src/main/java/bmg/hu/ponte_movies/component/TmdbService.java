@@ -133,6 +133,38 @@ public class TmdbService {
 
     }
 
+    public void getImagesForMovie(MovieListItem movie) {
+        try {
+            Long movieId = movie.getId();
+
+            URL url = new URL(apiBaseUrl + "/" + movieId + "/images?api_key=" + apiKey);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty(HEADER_KEY, HEADER_VALUE);
+
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = inputReader.readLine()) != null) {
+                content.append(inputLine);
+            }
+
+            inputReader.close();
+            connection.disconnect();
+
+            JSONObject jsonResponse = new JSONObject(content.toString());
+            JSONArray results = jsonResponse.getJSONArray("backdrops");
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject movieJson = results.getJSONObject(i);
+                movie.getImages().add(movieJson.getString("file_path"));
+            }
+
+        } catch (IOException | JSONException e) {
+            throw new IllegalTmdbRequestException(e.getMessage());
+        }
+
+    }
+
 }
 
 

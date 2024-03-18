@@ -18,5 +18,6 @@ public class MovieListItem {
     private String posterPath;
     private List<String> cast = new ArrayList<>();
     private List<String> productionCompanies = new ArrayList<>();
+    private List<String> images = new ArrayList<>();
 
 }
