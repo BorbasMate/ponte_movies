@@ -58,6 +58,7 @@ public class TmdbService {
                 movie.setId(movieJson.getLong("id"));
                 movie.setOverView(movieJson.getString("overview"));
                 movie.setOriginalLanguage(movieJson.getString("original_language"));
+                movie.setPosterPath(movieJson.getString("poster_path"));
 
                 movies.add(movie);
             }

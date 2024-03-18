@@ -15,6 +15,7 @@ public class MovieListItem {
     private String releaseDate;
     private String overView;
     private String originalLanguage;
+    private String posterPath;
     private List<String> cast = new ArrayList<>();
     private List<String> productionCompanies = new ArrayList<>();
 
