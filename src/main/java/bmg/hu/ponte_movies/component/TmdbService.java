@@ -66,7 +66,7 @@ public class TmdbService {
         }
     }
 
-    public MovieListItem getActorsForMovie(MovieListItem movie) {
+    public void getActorsForMovie(MovieListItem movie) {
         try {
             Long movieId = movie.getId();
 
@@ -92,7 +92,40 @@ public class TmdbService {
                 movie.getCast().add(movieJson.getString("name"));
             }
 
-            return movie;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void getProductionCompaniesForMovie(MovieListItem movie) {
+        try {
+            Long movieId = movie.getId();
+
+            URL url = new URL(apiBaseUrl + "/" + movieId + "?language=en-US&api_key=" + apiKey);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept", "application/json");
+
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = inputReader.readLine()) != null) {
+                content.append(inputLine);
+            }
+
+            inputReader.close();
+            connection.disconnect();
+
+            JSONObject jsonResponse = new JSONObject(content.toString());
+            JSONArray results = jsonResponse.getJSONArray("production_companies");
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject movieJson = results.getJSONObject(i);
+                movie.getProductionCompanies().add(movieJson.getString("name"));
+            }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (JSONException e) {

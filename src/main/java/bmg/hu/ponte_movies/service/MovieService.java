@@ -24,6 +24,7 @@ public class MovieService {
     public List<MovieListItem> findMovies() {
         List<MovieListItem> movies = tmdbService.getTopRatedMovies();
         movies.forEach(tmdbService::getActorsForMovie);
+        movies.forEach(tmdbService::getProductionCompaniesForMovie);
 
         return movies;
     }

@@ -16,5 +16,6 @@ public class MovieListItem {
     private String overView;
     private String originalLanguage;
     private List<String> cast = new ArrayList<>();
+    private List<String> productionCompanies = new ArrayList<>();
 
 }
