@@ -109,3 +109,14 @@ i.fa-star.checked {color: var(--cl-rating-star-checked);}
     background-color: var(--cl-card-body-bg);
     color: var(--cl-soft-black);
 }
+
+.cast-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.cast-container p {
+    margin-bottom: 5px;
+}
