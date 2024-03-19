@@ -1,0 +1,111 @@
+.product-card{
+    max-width: var(--dialog-width);
+    margin-inline: auto;
+    overflow: hidden;
+    box-shadow: var(--dialog-shadow-small);
+    border: var(--dialog-border);
+
+    background-color: var(--my-bg-color);
+    color: var(--my-text-color);
+    text-align: center;
+}
+
+span.back-to-products{
+    float: left;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+
+.product-card h1 {
+    padding: 5px 0;
+    background-color: var(--cl-primary);
+    color: var(--cl-soft-white);
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.image-container > * {
+    flex: 1; /* Side columns */
+}
+
+.image-container > *:nth-child(2) {
+    flex: 6; /* Middle column */
+}
+
+.arrow {
+    font-size: 24px;
+    /*padding: 0 6px;*/
+    background-color: var(--cl-primary);
+    color: var(--cl-soft-white);
+    margin: 0 0.5rem 0 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+
+img.product-image{
+    max-height: 60vh;
+    max-width: 90%;
+
+    object-fit: contain;
+    margin-inline: auto;
+}
+
+.product-card-middle{
+    background-color: var(--cl-highlight);
+    margin: 0 20px 20px 20px;
+}
+
+
+i.fa-star{color: var(--cl-rating-star);}
+i.fa-star{margin-right: 2px;}
+i.fa-star:nth-last-child(1) { margin-right: 0; }
+i.fa-star.checked {color: var(--cl-rating-star-checked);}
+
+#ratingForm textarea {
+    width: 70%;
+    margin-bottom: 15px;
+    padding: 0.5rem;
+}
+
+
+.no-rating{ margin-bottom: 10px; }
+
+.rating-list{ margin: 10px; }
+.rating-list h2 { margin-bottom: 0.5rem;}
+
+
+
+.rating-card {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.rating-card:nth-last-child(1) { margin-bottom: 0; }
+
+
+.rating-card-header{
+    text-align: left;
+    padding: 0.25rem 0.5rem 0;
+    background-color: var(--cl-card-header-bg);
+    color: var(--cl-soft-black);
+    font-weight: bold;
+}
+
+/**** rating-stars */
+.rating-card-title{
+    float: right;
+    margin-bottom: 0.15rem;
+}
+
+.rating-card-body{
+    text-align: justify;
+    hyphens: auto;
+    padding: 0.75rem 1rem;
+    background-color: var(--cl-card-body-bg);
+    color: var(--cl-soft-black);
+}

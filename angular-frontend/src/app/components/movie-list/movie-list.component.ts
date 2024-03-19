@@ -107,11 +107,19 @@ export class MovieListComponent implements OnInit {
     const selectedMovie = this.movieListItems
         .find(movie => movie.movieId === movieId);
 
-    if (selectedMovie) {
-      this.movieService.movieListItemSelected.next(selectedMovie);
-      console.log(selectedMovie);
-      this.router.navigate(['/movie-details/', movieId]);
-    }
+    sessionStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+    this.router.navigate(['/movie-details']);
+
+
+
+    // if (selectedMovie) {
+    //   this.movieService.movieListItemSelected.next(selectedMovie);
+    //   console.log(selectedMovie);
+    //   setTimeout(() => {
+    //     // Code to execute after 1 second
+    //     this.router.navigate(['/movie-details']);
+    //   }, 5000);
+    // }
 
   }
 
