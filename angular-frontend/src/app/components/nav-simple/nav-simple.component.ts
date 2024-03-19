@@ -7,11 +7,5 @@ import { Component } from '@angular/core';
 })
 export class NavSimpleComponent {
 
-  hideMenu(){
-    if (document.getElementById("nav-check") != null) {
-      (document.getElementById("nav-check") as HTMLInputElement)
-        .checked = false;
-    }
-  }
 
 }

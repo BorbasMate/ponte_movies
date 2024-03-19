@@ -128,14 +128,6 @@ i.fa-star.checked {color: var(--cl-rating-star-checked);}
     margin-right: auto;
 }
 
-/*.btn {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap; !* Allows the button content to wrap onto new lines *!*/
-/*    white-space: normal; !* Allows the text to wrap to a new line *!*/
-/*    word-wrap: break-word; !* Breaks words to prevent overflow *!*/
-/*    width: 100%; !* Ensures the button takes up the full width of its container *!*/
-/*    padding: 10px 20px; !* Adjust padding as needed *!*/
-/*}*/
 
 /**** button shrink */
 
@@ -164,14 +156,7 @@ i.fa-star.checked {color: var(--cl-rating-star-checked);}
 /* Button size for screens even smaller */
 @media (max-width: 400px) {
     .btn {
-        /*max-width: 90%;*/
         padding: 6px 12px; /* Even smaller padding */
         font-size: 12px; /* Even smaller font size */
-        /*display: flex;*/
-        /*flex-wrap: wrap; !* Allows the button content to wrap onto new lines *!*/
-        /*white-space: normal; !* Allows the text to wrap to a new line *!*/
-        /*word-wrap: break-word; !* Breaks words to prevent overflow *!*/
-        /*justify-self: center; !* Centers the text horizontally *!*/
-
     }
 }
