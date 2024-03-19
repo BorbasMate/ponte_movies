@@ -1,0 +1,37 @@
+<div id="rightDiv">
+
+<!--    <app-landing-message></app-landing-message>-->
+
+    <div class="container" id="product-list-container">
+
+        <div id="product-listing-cards">
+            <div *ngFor="let movieListItem of movieListItems" class="card product-listing-card">
+
+                <h2 class="title" (click)="details(movieListItem.movieId)">{{movieListItem.title}}</h2>
+
+                <img [src]="movieListItem.posterPath" class="product-image" alt="product picture">
+
+            </div>
+        </div>
+
+        <div id="pagination-container">
+            <app-pagination
+                    [currentPage]="currentPage"
+                    [limit]="paginationLimit"
+                    [total]="paginationTotal"
+                    (changePage)="changePage($event)">
+            </app-pagination>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
