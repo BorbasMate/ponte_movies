@@ -1,0 +1,55 @@
+<div class="pagination-container">
+  <ul class="pagination numbers" *ngIf="pages.length > 0">
+    <!-- NUMBERS -->
+    <li *ngFor="let page of pages"
+        [ngClass]="{ 'page-item': true, active: currentPage === page }"
+        (click)="changePage.emit(page)">
+      <span class="page-link">{{ page }}</span>
+    </li>
+  </ul>
+
+  <ul class="pagination arrows" *ngIf="pages.length > 0">
+
+    <!--  FIRST-page -->
+    <li class="page-item page-first" *ngIf="pages.length > 1">
+      <a (click)="changePage.emit(1)" class="page-link" title="First-page">
+        <i class="fas fa-step-backward"></i>First</a>
+    </li>
+
+    <!--  PREV-page -->
+    <li class="page-item page-prev" *ngIf="pages.length > 1">
+      <a (click)="changePage.emit(currentPage - 1)" class="page-link"
+         [class.disabled]="currentPage <= 1"
+         [style.pointer-events]="currentPage <= 1 ? 'none' : 'auto'"
+         title="Previous-page">
+        <i class="fas fa-chevron-left"></i>Prev</a>
+    </li>
+
+    <!--  NEXT-page -->
+    <li class="page-item page-next" *ngIf="pages.length > 1">
+      <a (click)="changePage.emit(currentPage + 1)" class="page-link" title="Next-page"
+         [class.disabled]="currentPage >= Math.ceil(total / limit)"
+         [style.pointer-events]="currentPage >= Math.ceil(total / limit) ? 'none' : 'auto'">
+        Next<i class="fas fa-chevron-right"></i></a>
+    </li>
+
+    <!--  LAST-page -->
+    <li class="page-item page-last" *ngIf="pages.length > 1">
+      <a (click)="changePage.emit(Math.ceil(total / limit))" class="page-link" title="Last-page">
+        Last<i class="fas fa-step-forward"></i></a>
+    </li>
+  </ul>
+
+  <!-- NO MOVIES FOUND -->
+  <h5 *ngIf="pages.length < 1" class="no-product-found">
+    There are no Movies found<br/>
+
+    <img src="assets/images/catonly.svg" alt="No products found"/>
+
+    <div class="mb-5 license-text">Image by
+      <a href="https://www.freepik.com/free-vector/404-error-template-flat-style_1703300.htm#query=simple%20404&position=45&from_view=search&track=ais&uuid=e9f103d2-1aff-44b6-898b-997092fea522">
+        Freepik</a></div>
+  </h5>
+
+
+</div>
