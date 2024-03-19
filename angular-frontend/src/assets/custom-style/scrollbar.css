@@ -1,0 +1,25 @@
+/* WEBKIT: "CHROME" */
+
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cl-primary);
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  -webkit-box-shadow:  inset 0px 0px 2px 10px white;
+  /*background-color: white;*/
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background: #aaa;
+}
+
+/* FIREFOX:
+cannot be added easy to the whole body-tag just for div-s,
+but that's breaks that layout :( */

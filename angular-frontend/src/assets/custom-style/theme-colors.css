@@ -1,0 +1,30 @@
+:root,
+:root.light { /****  LIGHT-theme **/
+  --my-bg-color: var(--cl-soft-white);
+  --my-text-color: var(--cl-soft-black);
+  --cl-shadow-color: var(--cl-shadow-dark-color);
+  --dialog-shadow: var(--dialog-shadow-dark);
+  --dialog-shadow-small: var(--dialog-shadow-dark-small);
+  --dialog-border: var(--dialog-border-dark);
+  --cl-rating-star: var(--cl-silver-soft);
+  --cl-rating-star-checked: var(--cl-primary);
+  --cl-card-header-bg: var(--cl-card-header-bg-light);
+  --cl-card-body-bg: var(--cl-card-body-bg-light);
+
+
+}
+
+:root.dark { /** DARK- theme **/
+  --my-bg-color: var(--cl-soft-black);
+  --my-text-color: var(--cl-soft-white);
+  --cl-shadow-color: var(--cl-shadow-light-color);
+  --dialog-shadow: var(--dialog-shadow-light);
+  --dialog-shadow-small: var(--dialog-shadow-light-small);
+  --dialog-border: var(--dialog-border-light);
+  --cl-rating-star: silver;
+  --cl-rating-star-checked: var(--cl-soft-white);
+  --cl-card-header-bg: var(--cl-card-header-bg-dark);
+  --cl-card-body-bg: var(--cl-card-body-bg-dark);
+
+
+}

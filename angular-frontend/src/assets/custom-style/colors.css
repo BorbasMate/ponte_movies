@@ -1,0 +1,81 @@
+:root { /**** COLORS **/
+  --cl-soft-black: #0e1111;
+  --cl-soft-white: #f6f6f6;
+  --cl-silver-soft: #a2a9a9;
+  --cl-silver-hard: #707373;
+  --cl-blue-soft: #CAF0F8;
+  --cl-blue-hard: #03045E;
+
+  /* [ BOX-SHADOW ] */
+  /* [inset] offset-X offset-Y blurRadius spreadRadius color */
+  --cl-shadow-dark-color: rgba(14, 17, 17, 0.5);
+  --dialog-shadow-dark: 0px 0px 10px 5px var(--cl-shadow-dark-color);
+  --dialog-shadow-dark-small: 0px 0px 15px -5px var(--cl-shadow-dark-color);
+  --cl-shadow-light-color: rgba(246, 246, 246, 0.4);
+  --dialog-shadow-light: 0px 0px 15px 5px var(--cl-shadow-light-color);
+  --dialog-shadow-light-small: 0px 0px 15px -5px var(--cl-shadow-light-color);
+
+  /* [ BORDER ]  */
+  --dialog-border-dark: 0px solid var(--cl-soft-black);
+  --dialog-border-light: 1px solid var(--cl-soft-white);
+
+  /* [ RATING-stars]  */
+  --cl-rating-star: silver;
+  --cl-rating-star-checked: var(--cl-primary);
+
+  /* [ CARD ] */
+  --cl-card-body-bg-dark: var(--cl-silver-soft);
+  --cl-card-body-bg-light: white;
+  --cl-card-header-bg-dark: var(--cl-silver-hard);
+  --cl-card-header-bg-light: rgba(33, 37, 41, 0.03);
+
+}
+
+
+label.form-label.text-danger{
+  color: yellow !important;
+  font-weight: bold;
+  line-height: 1.2;
+  font-size: 110%;
+  background-color: var(--cl-soft-black);
+  padding: 0.5rem 0.75rem 0.7rem 0.75rem;
+  text-align: center;
+  width: 80%;
+  margin-bottom: -0.15rem;
+  display: block;
+  font-variant-caps: petite-caps;
+  text-transform: capitalize;
+  border-top-left-radius: 1ex;
+  border-top-right-radius: 1ex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label.form-label.text-danger ~ small.text-danger{
+  color: olive !important;
+  border-bottom-left-radius: 1ex;
+  border-bottom-right-radius: 1ex;
+  margin-top: -0.08rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+small.text-danger{
+  color: yellow !important;
+  font-weight: bold;
+  line-height: 1.2;
+  font-size: 110%;
+  background-color: var(--cl-soft-black);
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
+  display: block;
+  font-variant-caps: petite-caps;
+  text-transform: capitalize;
+}
+
+span.form-label + small.text-danger {
+  margin-top: -0.25rem;
+}

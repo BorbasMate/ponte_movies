@@ -1,0 +1,53 @@
+@import "/assets/custom-style/button.css";
+@import "/assets/custom-style/scrollbar.css";
+@import "/assets/custom-style/colors.css";
+@import "/assets/custom-style/theme-colors.css";
+@import "/assets/custom-style/media-query-fixes.css";
+
+/**** 1em = 16px */
+html{ font-size: 16px; }
+
+:root{
+  --app-padding: 24px;
+  --app-margin: 56px;
+  --app-margin-top: 80px;
+
+  /** App-COLORs **/
+  --cl-primary: rgb(0, 119, 182);
+  --cl-highlight: #0096C7;
+  --cl-highlight-light: #48CAE4;
+
+
+  --cl-highlight-alpha-value: 1;
+  --cl-highlight-alpha: rgba(77, 176, 128, var(--cl-highlight-alpha-value));
+
+  --cl-hero: #F9F871;
+  --cl-dialog: #95B1AF;
+
+  /** Register & Login Form (RLF) **/
+  --RLF-bg_color: var(--cl-primary);
+  /*--RLF-bg_shadow: 0px 0px 20px -10px rgba(0,0,0,0.5);*/
+  --RLF-bg_shadow: 0px 0px 20px -10px pink;
+  /*--RLF-bg_shadow: 0;*/
+  --RLF-border-radius: 5px;
+  --RLF-width: 750px;
+
+  --dialog-max-width: 750px;
+  --dialog-width: calc((750 / 16) * 1rem);
+  --dialog-border-radius: 5px;
+}
+
+
+.round_corner {
+  border-radius: var(--dialog-border-radius) !important;
+  box-shadow: var(--RLF-bg_shadow);
+  overflow: hidden;
+  margin-bottom: 0 !important;
+}
+
+body{
+  background-color: var(--my-bg-color) !important;
+  color: var(--my-text-color) !important;
+}
+
+

@@ -1,0 +1,25 @@
+button.btn-primary{
+  background-color: var(--cl-highlight) !important;
+  color: black !important;
+  font-weight: bold;
+  border: 0px solid white !important;
+  box-shadow: 0px 0px 20px -10px rgba(0,0,0,0.5);
+  /*font-variant-caps: all-small-caps;*/
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 115%;
+}
+
+button.btn-primary:disabled{
+  color: white !important;
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+button.btn-primary:hover:enabled {
+  outline: 2px solid var(--my-text-color) !important;
+}
+
+.my-dialog .btn-primary:hover:enabled {
+  outline: 2px solid var(--my-bg-color) !important;
+}
