@@ -1,0 +1,73 @@
+
+/** MOVIE-cards **/
+#product-listing-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.movie-listing-card {
+    overflow: hidden;
+    position: relative;
+    min-width: 200px;
+    transition: all 0.3ms ease-in-out;
+
+    display: flex;
+    justify-content: space-between;
+
+    border: 1px solid #ddd;
+
+    background-color: var(--my-bg-color);
+    color: var(--my-text-color);
+}
+
+.movie-listing-card .title {
+    text-align: center;
+    padding: 0.15rem 0.25rem 0.5rem 0.25rem;
+    background-color: var(--cl-primary);
+    color: var(--cl-soft-white);
+    text-transform: capitalize;
+    cursor: pointer;
+    margin-bottom: 1px;
+}
+
+
+.movie-listing-card .desc {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.movie-listing-card img.movie-image {
+    object-fit: contain;
+    height: 30vh;
+    max-width: 95%;
+    margin-inline: auto;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+}
+
+.movie-listing-card .card-text {
+    text-align: justify;
+    hyphens: auto;
+}
+
+
+/** PAGINATION **/
+#pagination-container {
+    margin-top: 0.5rem;
+    max-width: fit-content;
+    margin-inline: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
