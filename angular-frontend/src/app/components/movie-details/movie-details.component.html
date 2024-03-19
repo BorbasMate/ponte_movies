@@ -46,28 +46,31 @@
     <div class="ratings">
         <h4>Rate this Movie!</h4>
         <form (ngSubmit)="submit()" [formGroup]="ratingForm" id="ratingForm">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                        (click)="ratingForm.get('ratingValue')?.markAsTouched()">{{movieListItem.title}}
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <button class="dropdown-item" type="button" (click)="setRating(1)">1</button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" type="button" (click)="setRating(2)">2</button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" type="button" (click)="setRating(3)">3</button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" type="button" (click)="setRating(4)">4</button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" type="button" (click)="setRating(5)">5</button>
-                    </li>
-                </ul>
+            <div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                            (click)="ratingForm.get('ratingValue')?.markAsTouched()">{{movieListItem.title}}
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <button class="dropdown-item" type="button" (click)="setRating(1)">1</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" (click)="setRating(2)">2</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" (click)="setRating(3)">3</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" (click)="setRating(4)">4</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" (click)="setRating(5)">5</button>
+                        </li>
+                    </ul>
+                </div>
                 <br>
+
                 <small *ngIf="ratingForm.get('ratingValue')?.touched && ratingForm.get('ratingValue')?.invalid"
                        class="text-danger">{{ 'Please select a rating' }}</small>
             </div>
@@ -100,7 +103,7 @@
 
 
             <div class="dropdown">
-                <button class="btn btn-primary">{{'Save Rating'}}</button>
+                <button [disabled]="ratingForm.invalid" class="btn btn-primary">{{'Save Rating'}}</button>
             </div>
 
         </form>
