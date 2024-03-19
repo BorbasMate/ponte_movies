@@ -11,6 +11,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { LandingMessageComponent } from './components/landing-message/landing-message.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { NavErrorComponent } from './components/nav-error/nav-error.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     PaginationComponent,
     MovieListComponent,
     LandingMessageComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    NavErrorComponent
   ],
   imports: [
     BrowserModule,

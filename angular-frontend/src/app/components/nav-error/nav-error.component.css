@@ -1,0 +1,36 @@
+.error_cat{
+    display: grid;
+    height: 100%;
+    text-align: center;
+}
+
+.error_cat_image{
+    max-width: 100%;
+    max-height: 90vh;
+    margin: auto;
+}
+
+.show_link{
+    text-decoration: underline !important;
+    cursor: pointer !important;
+}
+
+.show_link:hover{
+    background-color: var(--cl-primary);
+    border-radius: var(--dialog-border-radius);
+    text-decoration: none !important;
+    color: var(--cl-soft-white);
+    padding: 5px 10px;
+}
+
+.msg-container{ padding: 10px; }
+.msg-container p {line-height: 1.15;}
+
+.msg-sorry{
+    font-size: 2rem;
+    font-style: italic;
+}
+
+.msg-navigate{ font-size: 1.5rem; }
+
+.license-text{ font-size: 0.80rem; }
