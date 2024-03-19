@@ -1,0 +1,40 @@
+footer{
+  z-index: 10;
+
+  margin: 0;
+  overflow: hidden;
+
+  height: clamp(1rem, 1.5rem, 10vh);
+  padding: 0 0 1.70rem;
+
+  text-align: center;
+
+  background: linear-gradient(180deg, #90E0EF 0%, #CAF0F8 100%);
+}
+
+
+.footer-inner {
+  color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+span.copy-sign{
+  margin-right: 0.10rem;
+}
+
+footer i.fab {
+  display: block;
+}
+
+.socials{
+  display: flex;
+  flex-direction: row;
+  gap: 0.55rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
