@@ -1,0 +1,50 @@
+div.landing-message{
+    margin-top: calc((-1 * var(--app-padding)) + 2vh);
+    margin-bottom: var(--app-padding);
+    margin-inline: auto;
+    max-width: var(--dialog-max-width);
+
+
+    padding: 15px 10px;
+    text-align: center;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 125%;
+    font-family: 'Playfair Display', serif;
+
+
+    border: 3px solid var(--cl-primary);
+    box-shadow: var(--dialog-shadow-small);
+    border-radius: var(--dialog-border-radius);
+    position: relative;
+}
+
+#message-cat{
+    display: block;
+    margin-inline: auto;
+    margin-top: -70px;
+    margin-bottom: -50px;
+    width: 200px;
+}
+
+#hide-message{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+
+    padding: 2px 10px;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 85%;
+    font-family: initial;
+
+    cursor: pointer;
+    user-select: none;
+
+    background-color: var(--cl-primary);
+    color:white !important;
+    border-radius: 11px;
+}

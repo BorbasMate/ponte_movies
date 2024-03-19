@@ -9,6 +9,7 @@ import { NavSimpleComponent } from './components/nav-simple/nav-simple.component
 import { FooterComponent } from './components/footer/footer.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { LandingMessageComponent } from './components/landing-message/landing-message.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
     NavSimpleComponent,
     FooterComponent,
     PaginationComponent,
-    MovieListComponent
+    MovieListComponent,
+    LandingMessageComponent
   ],
   imports: [
     BrowserModule,

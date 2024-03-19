@@ -10,7 +10,7 @@
 .movie-listing-card {
     overflow: hidden;
     position: relative;
-    min-width: 200px;
+    min-width: 250px;
     transition: all 0.3ms ease-in-out;
 
     display: flex;
@@ -30,6 +30,9 @@
     text-transform: capitalize;
     cursor: pointer;
     margin-bottom: 1px;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    display: grid;
+    align-items: center;
 }
 
 

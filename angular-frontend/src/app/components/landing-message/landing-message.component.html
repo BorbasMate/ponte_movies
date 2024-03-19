@@ -1,0 +1,8 @@
+<div class="landing-message" *ngIf="showLandingMessage">
+    <p>Welcome to the Movie Rating App!<br/>
+        You can browse the up-to-date top rated Movies in the world.
+        If you want, you can also rate the movies yourself,
+        just click on the title of the Movie on any tile!</p>
+    <img src="/assets/images/catonly.svg" alt="sleeping cat" id="message-cat">
+    <div id="hide-message" (click)="hideLandingMessage()">Hide</div>
+</div>
