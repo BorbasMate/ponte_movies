@@ -190,7 +190,7 @@ export class MovieListComponent implements OnInit {
   // }
 
   private getMovies() {
-    this.movieService.getAllMovies(this.currentPage).subscribe({
+    this.movieService.getMovies(this.currentPage).subscribe({
       next: (data: PaginationDataModel) => {
         this.movieListItems = data.movieListItemList
         this.paginationTotal = data.total
