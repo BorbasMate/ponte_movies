@@ -103,8 +103,16 @@ export class MovieListComponent implements OnInit {
     // }
   }
 
-  details(id: number) {
-    this.router.navigate(['/movie-details/', id]);
+  details(movieId: number) {
+    const selectedMovie = this.movieListItems
+        .find(movie => movie.movieId === movieId);
+
+    if (selectedMovie) {
+      this.movieService.movieListItemSelected.next(selectedMovie);
+      console.log(selectedMovie);
+      this.router.navigate(['/movie-details/', movieId]);
+    }
+
   }
 
   // edit(id: number) {

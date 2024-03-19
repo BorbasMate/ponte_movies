@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { LandingMessageComponent } from './components/landing-message/landing-message.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LandingMessageComponent } from './components/landing-message/landing-me
     FooterComponent,
     PaginationComponent,
     MovieListComponent,
-    LandingMessageComponent
+    LandingMessageComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
