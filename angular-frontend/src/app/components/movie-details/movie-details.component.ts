@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MovieListItemModel} from "../../models/movie-list-item.model";
 import {RatingListItemModel} from "../../models/rating-list-item.model";
-import {MovieService} from "../../services/movie.service";
 import {RatingService} from "../../services/rating.service";
 import {validationHandler} from "../utils/validationHandler";
 
@@ -25,10 +24,10 @@ export class MovieDetailsComponent  {
 
 
     constructor(private formBuilder: FormBuilder,
-                private movieService: MovieService,
                 private ratingService: RatingService) {
         // @ts-ignore
         this.movieListItem = JSON.parse(sessionStorage.getItem('selectedMovie'));
+        this.languageText();
         console.log(this.movieListItem.title);
         this.movieId = this.movieListItem.movieId;
         this.getImages();
@@ -64,6 +63,7 @@ export class MovieDetailsComponent  {
         this.ratingService.getRatings(this.movieId).subscribe({
                 next: (data: RatingListItemModel[]) => {
                     this.ratingListItems = data;
+                    this.setUserAsEmail(this.ratingListItems);
                     if (data.length === 0) {
                         this.errorMessage = "There is no rating for this product!"
                         console.info("INFO: " + this.errorMessage);
@@ -118,4 +118,36 @@ export class MovieDetailsComponent  {
         console.log(this.existingImageListItemFileUrls[this.imageIndex]);
     }
 
+    private languageText() {
+        if (this.movieListItem.originalLanguage === "en") {
+            this.movieListItem.originalLanguage = "English";
+        }
+        if (this.movieListItem.originalLanguage === "ja") {
+            this.movieListItem.originalLanguage = "Japanese";
+        }
+        if (this.movieListItem.originalLanguage === "hi") {
+            this.movieListItem.originalLanguage = "Hindi";
+        }
+        if (this.movieListItem.originalLanguage === "hu") {
+            this.movieListItem.originalLanguage = "Hungarian";
+        }
+        if (this.movieListItem.originalLanguage === "fr") {
+            this.movieListItem.originalLanguage = "French";
+        }
+        if (this.movieListItem.originalLanguage === "it") {
+            this.movieListItem.originalLanguage = "Italian";
+        }
+        if (this.movieListItem.originalLanguage === "de") {
+            this.movieListItem.originalLanguage = "German";
+        }
+    }
+
+
+    private setUserAsEmail(ratingListItems: RatingListItemModel[]) {
+        ratingListItems.forEach(item => {
+            let email = item.email;
+            item.email = email.split("@")[0];
+        });
+
+    }
 }
