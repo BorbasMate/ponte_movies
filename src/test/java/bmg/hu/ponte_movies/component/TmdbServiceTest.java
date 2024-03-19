@@ -1,14 +1,13 @@
 package bmg.hu.ponte_movies.component;
 
 import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.dto.Pagination;
 import bmg.hu.ponte_movies.exception.IllegalTmdbRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,10 +35,10 @@ class TmdbServiceTest {
         ReflectionTestUtils.setField(tmdbService, "apiKey", apiKey);
 
         // When
-        List<MovieListItem> result = tmdbService.getTopRatedMovies();
+        Pagination pagination = tmdbService.getTopRatedMovies(2);
 
         // Then
-        assertFalse(result.isEmpty());
+        assertFalse(pagination.getMovieListItemList().isEmpty());
 
     }
 
@@ -51,7 +50,7 @@ class TmdbServiceTest {
 
         // Then
         Exception exception = assertThrows(IllegalTmdbRequestException.class,
-                () -> tmdbService.getTopRatedMovies());
+                () -> tmdbService.getTopRatedMovies(1));
         assertEquals("no protocol: null/top_rated?language=en-US&page=1&api_key=null", exception.getMessage());
 
     }
@@ -62,13 +61,13 @@ class TmdbServiceTest {
         ReflectionTestUtils.setField(tmdbService, "apiBaseUrl", apiBaseUrl);
         ReflectionTestUtils.setField(tmdbService, "apiKey", apiKey);
 
-        List<MovieListItem> result = tmdbService.getTopRatedMovies();
+        Pagination pagination = tmdbService.getTopRatedMovies(1);
 
         // When
-        tmdbService.getActorsForMovie(result.get(0));
+        tmdbService.getActorsForMovie(pagination.getMovieListItemList().get(0));
 
         // Then
-        assertFalse(result.get(0).getCast().isEmpty());
+        assertFalse(pagination.getMovieListItemList().get(0).getCast().isEmpty());
 
     }
 
@@ -91,13 +90,13 @@ class TmdbServiceTest {
         ReflectionTestUtils.setField(tmdbService, "apiBaseUrl", apiBaseUrl);
         ReflectionTestUtils.setField(tmdbService, "apiKey", apiKey);
 
-        List<MovieListItem> result = tmdbService.getTopRatedMovies();
+        Pagination pagination = tmdbService.getTopRatedMovies(2);
 
         // When
-        tmdbService.getProductionCompaniesForMovie(result.get(0));
+        tmdbService.getProductionCompaniesForMovie(pagination.getMovieListItemList().get(0));
 
         // Then
-        assertFalse(result.get(0).getProductionCompanies().isEmpty());
+        assertFalse(pagination.getMovieListItemList().get(0).getProductionCompanies().isEmpty());
 
     }
 
@@ -120,13 +119,13 @@ class TmdbServiceTest {
         ReflectionTestUtils.setField(tmdbService, "apiBaseUrl", apiBaseUrl);
         ReflectionTestUtils.setField(tmdbService, "apiKey", apiKey);
 
-        List<MovieListItem> result = tmdbService.getTopRatedMovies();
+        Pagination pagination = tmdbService.getTopRatedMovies(1);
 
         // When
-        tmdbService.getImagesForMovie(result.get(0));
+        tmdbService.getImagesForMovie(pagination.getMovieListItemList().get(0));
 
         // Then
-        assertFalse(result.get(0).getImages().isEmpty());
+        assertFalse(pagination.getMovieListItemList().get(0).getImages().isEmpty());
 
     }
 
@@ -142,7 +141,6 @@ class TmdbServiceTest {
         Exception exception = assertThrows(IllegalTmdbRequestException.class,
                 () -> tmdbService.getImagesForMovie(new MovieListItem()));
         assertEquals("no protocol: null/null/images?api_key=null", exception.getMessage());
-
 
     }
 

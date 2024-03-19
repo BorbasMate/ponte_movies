@@ -1,6 +1,7 @@
 package bmg.hu.ponte_movies.controller;
 
 import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.dto.Pagination;
 import bmg.hu.ponte_movies.dto.RatingListItem;
 import bmg.hu.ponte_movies.exception.GlobalExceptionHandler;
 import bmg.hu.ponte_movies.service.MovieService;
@@ -77,37 +78,41 @@ class MovieControllerTest {
         item2.setProductionCompanies(List.of("Paramount", "Bad Robot"));
         item2.setImages(List.of("/ccc.jpg", "/ddd.jpg"));
 
+        Pagination pagination = new Pagination();
+        pagination.setMovieListItemList(List.of(item1, item2));
+        pagination.setTotal(100L);
 
-        when(movieServiceMock.findMovies()).thenReturn(List.of(item1, item2));
+        when(movieServiceMock.findMovies(1)).thenReturn(pagination);
 
         //when
-        this.mockMvc.perform(get("/api/movies"))
+        this.mockMvc.perform(get("/api/movies?page=1"))
 
                 //then
                 .andExpect(status().is(200))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].movieId", is(100)))
-                .andExpect(jsonPath("$[0].title", is("Star Wars IV")))
-                .andExpect(jsonPath("$[0].releaseDate", is("1980-01-01")))
-                .andExpect(jsonPath("$[0].overView", is("A new hope")))
-                .andExpect(jsonPath("$[0].originalLanguage", is("en")))
-                .andExpect(jsonPath("$[0].posterPath", is("/xxx.jpg")))
-                .andExpect(jsonPath("$[0].cast", hasSize(2)))
-                .andExpect(jsonPath("$[0].productionCompanies", hasSize(2)))
-                .andExpect(jsonPath("$[0].images", hasSize(2)))
-                .andExpect(jsonPath("$[1].movieId", is(200)))
-                .andExpect(jsonPath("$[1].title", is("Star Wars VII")))
-                .andExpect(jsonPath("$[1].releaseDate", is("2010-01-01")))
-                .andExpect(jsonPath("$[1].overView", is("The force awakens")))
-                .andExpect(jsonPath("$[1].originalLanguage", is("en")))
-                .andExpect(jsonPath("$[1].posterPath", is("/yyy.jpg")))
-                .andExpect(jsonPath("$[1].cast", hasSize(2)))
-                .andExpect(jsonPath("$[1].productionCompanies", hasSize(2)))
-                .andExpect(jsonPath("$[1].images", hasSize(2)));
+                .andExpect(jsonPath("$.movieListItemList", hasSize(2)))
+                .andExpect(jsonPath("$.movieListItemList[0].movieId", is(100)))
+                .andExpect(jsonPath("$.movieListItemList[0].title", is("Star Wars IV")))
+                .andExpect(jsonPath("$.movieListItemList[0].releaseDate", is("1980-01-01")))
+                .andExpect(jsonPath("$.movieListItemList[0].overView", is("A new hope")))
+                .andExpect(jsonPath("$.movieListItemList[0].originalLanguage", is("en")))
+                .andExpect(jsonPath("$.movieListItemList[0].posterPath", is("/xxx.jpg")))
+                .andExpect(jsonPath("$.movieListItemList[0].cast", hasSize(2)))
+                .andExpect(jsonPath("$.movieListItemList[0].productionCompanies", hasSize(2)))
+                .andExpect(jsonPath("$.movieListItemList[0].images", hasSize(2)))
+                .andExpect(jsonPath("$.movieListItemList[1].movieId", is(200)))
+                .andExpect(jsonPath("$.movieListItemList[1].title", is("Star Wars VII")))
+                .andExpect(jsonPath("$.movieListItemList[1].releaseDate", is("2010-01-01")))
+                .andExpect(jsonPath("$.movieListItemList[1].overView", is("The force awakens")))
+                .andExpect(jsonPath("$.movieListItemList[1].originalLanguage", is("en")))
+                .andExpect(jsonPath("$.movieListItemList[1].posterPath", is("/yyy.jpg")))
+                .andExpect(jsonPath("$.movieListItemList[1].cast", hasSize(2)))
+                .andExpect(jsonPath("$.movieListItemList[1].productionCompanies", hasSize(2)))
+                .andExpect(jsonPath("$.movieListItemList[1].images", hasSize(2)))
+                .andExpect(jsonPath("$.total", is(100)));
 
 
-        verify(movieServiceMock, times(1)).findMovies();
+        verify(movieServiceMock, times(1)).findMovies(1);
         verifyNoMoreInteractions(movieServiceMock);
 
     }

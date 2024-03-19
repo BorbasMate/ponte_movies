@@ -2,6 +2,7 @@ package bmg.hu.ponte_movies.service;
 
 import bmg.hu.ponte_movies.component.TmdbService;
 import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.dto.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +20,12 @@ public class MovieService {
         this.tmdbService = tmdbService;
     }
 
-    public List<MovieListItem> findMovies() {
-        List<MovieListItem> movies = tmdbService.getTopRatedMovies();
-        movies.forEach(tmdbService::getActorsForMovie);
-        movies.forEach(tmdbService::getProductionCompaniesForMovie);
-        movies.forEach(tmdbService::getImagesForMovie);
+    public Pagination findMovies(int page) {
+        Pagination pagination = tmdbService.getTopRatedMovies(page);
+        pagination.getMovieListItemList().forEach(tmdbService::getActorsForMovie);
+        pagination.getMovieListItemList().forEach(tmdbService::getProductionCompaniesForMovie);
+        pagination.getMovieListItemList().forEach(tmdbService::getImagesForMovie);
 
-        return movies;
+        return pagination;
     }
 }

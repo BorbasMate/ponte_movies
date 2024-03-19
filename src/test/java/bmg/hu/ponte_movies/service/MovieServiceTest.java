@@ -2,6 +2,7 @@ package bmg.hu.ponte_movies.service;
 
 import bmg.hu.ponte_movies.component.TmdbService;
 import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.dto.Pagination;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +59,12 @@ class MovieServiceTest {
         item2.setOriginalLanguage("en");
         item2.setPosterPath("/yyy.jpg");
 
-        when(tmdbServiceMock.getTopRatedMovies()).thenReturn(List.of(item1, item2));
+        Pagination pagination = new Pagination();
+        pagination.setMovieListItemList(List.of(item1, item2));
+        pagination.setTotal(100L);
+
+
+        when(tmdbServiceMock.getTopRatedMovies(1)).thenReturn(pagination);
 
         item1.setCast(List.of("Mark Hamill", "Harrison Ford"));
         item2.setCast(List.of("Adam Driver", "Daisy Ridley"));
@@ -77,21 +83,21 @@ class MovieServiceTest {
 
 
         //when
-        List<MovieListItem> movieListItems = movieService.findMovies();
+        Pagination paginationResult = movieService.findMovies(1);
 
         //then
-        assertEquals(2, movieListItems.size());
-        assertEquals("Star Wars IV", movieListItems.get(0).getTitle());
-        assertEquals("Star Wars VII", movieListItems.get(1).getTitle());
-        assertFalse(movieListItems.get(0).getCast().isEmpty());
-        assertFalse(movieListItems.get(1).getCast().isEmpty());
-        assertFalse(movieListItems.get(0).getProductionCompanies().isEmpty());
-        assertFalse(movieListItems.get(1).getProductionCompanies().isEmpty());
-        assertFalse(movieListItems.get(0).getImages().isEmpty());
-        assertFalse(movieListItems.get(1).getImages().isEmpty());
+        assertEquals(2, paginationResult.getMovieListItemList().size());
+        assertEquals("Star Wars IV", paginationResult.getMovieListItemList().get(0).getTitle());
+        assertEquals("Star Wars VII", paginationResult.getMovieListItemList().get(1).getTitle());
+        assertFalse(paginationResult.getMovieListItemList().get(0).getCast().isEmpty());
+        assertFalse(paginationResult.getMovieListItemList().get(1).getCast().isEmpty());
+        assertFalse(paginationResult.getMovieListItemList().get(0).getProductionCompanies().isEmpty());
+        assertFalse(paginationResult.getMovieListItemList().get(1).getProductionCompanies().isEmpty());
+        assertFalse(paginationResult.getMovieListItemList().get(0).getImages().isEmpty());
+        assertFalse(paginationResult.getMovieListItemList().get(1).getImages().isEmpty());
 
 
-        verify(tmdbServiceMock, times(1)).getTopRatedMovies();
+        verify(tmdbServiceMock, times(1)).getTopRatedMovies(1);
         verify(tmdbServiceMock, times(2)).getActorsForMovie(any(MovieListItem.class));
         verify(tmdbServiceMock, times(2)).getProductionCompaniesForMovie(any(MovieListItem.class));
         verify(tmdbServiceMock, times(2)).getImagesForMovie(any(MovieListItem.class));

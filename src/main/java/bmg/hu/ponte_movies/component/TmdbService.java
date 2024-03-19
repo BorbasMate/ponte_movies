@@ -1,6 +1,7 @@
 package bmg.hu.ponte_movies.component;
 
 import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.dto.Pagination;
 import bmg.hu.ponte_movies.exception.IllegalTmdbRequestException;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,11 +29,11 @@ public class TmdbService {
     private static final String HEADER_KEY = "Accept";
     private static final String HEADER_VALUE = "application/json";
 
-    public List<MovieListItem> getTopRatedMovies() {
+    public Pagination getTopRatedMovies(int page) {
         try {
             List<MovieListItem> movies = new ArrayList<>();
 
-            URL url = new URL(apiBaseUrl + "/top_rated?language=en-US&page=1&api_key=" + apiKey);
+            URL url = new URL(apiBaseUrl + "/top_rated?language=en-US&page=" + page + "&api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty(HEADER_KEY, HEADER_VALUE);
@@ -63,7 +64,12 @@ public class TmdbService {
                 movies.add(movie);
             }
 
-            return movies;
+            Pagination pagination = new Pagination();
+            pagination.setMovieListItemList(movies);
+            pagination.setTotal(jsonResponse.getLong("total_pages"));
+
+            return pagination;
+
         } catch (IOException | JSONException e) {
             throw new IllegalTmdbRequestException(e.getMessage());
         }
@@ -90,7 +96,8 @@ public class TmdbService {
 
             JSONObject jsonResponse = new JSONObject(content.toString());
             JSONArray results = jsonResponse.getJSONArray("cast");
-            for (int i = 0; i < 5; i++) {
+            int length = Math.min(5, results.length());
+            for (int i = 0; i < length; i++) {
                 JSONObject movieJson = results.getJSONObject(i);
                 movie.getCast().add(movieJson.getString("name"));
             }

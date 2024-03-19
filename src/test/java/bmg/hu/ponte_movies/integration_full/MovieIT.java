@@ -1,7 +1,7 @@
 package bmg.hu.ponte_movies.integration_full;
 
 import bmg.hu.ponte_movies.controller.MovieController;
-import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.dto.Pagination;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -36,7 +35,7 @@ class MovieIT {
         //given
 
         //when
-        ResponseEntity<List<MovieListItem>> response = movieController.getMovies();
+        ResponseEntity<Pagination> response = movieController.getMovies(1);
 
         //then
         assertEquals(HttpStatus.OK, response.getStatusCode());

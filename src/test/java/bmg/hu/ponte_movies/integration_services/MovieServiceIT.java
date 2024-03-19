@@ -1,6 +1,7 @@
 package bmg.hu.ponte_movies.integration_services;
 
 import bmg.hu.ponte_movies.dto.MovieListItem;
+import bmg.hu.ponte_movies.dto.Pagination;
 import bmg.hu.ponte_movies.service.MovieService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,11 @@ class MovieServiceIT {
         //given
 
         //when
-        List<MovieListItem> movieListItems = movieService.findMovies();
+        Pagination pagination = movieService.findMovies(1);
 
         //then
-        assertFalse(movieListItems.isEmpty());
-        for (MovieListItem movieListItem : movieListItems) {
+        assertFalse(pagination.getMovieListItemList().isEmpty());
+        for (MovieListItem movieListItem : pagination.getMovieListItemList()) {
             assertNotNull(movieListItem.getMovieId());
             assertNotNull(movieListItem.getTitle());
             assertNotNull(movieListItem.getReleaseDate());
@@ -42,9 +43,8 @@ class MovieServiceIT {
             assertNotNull(movieListItem.getCast());
             assertNotNull(movieListItem.getProductionCompanies());
             assertNotNull(movieListItem.getImages());
-
         }
-
+        assertNotNull(pagination.getTotal());
     }
 
 }
