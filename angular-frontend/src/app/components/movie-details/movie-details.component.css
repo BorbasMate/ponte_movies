@@ -63,7 +63,7 @@ img.product-image{
 
 
 i.fa-star{color: var(--cl-rating-star);}
-i.fa-star{margin-right: 2px;}
+/*i.fa-star{margin-right: 2px;}*/
 i.fa-star:nth-last-child(1) { margin-right: 0; }
 i.fa-star.checked {color: var(--cl-rating-star-checked);}
 
@@ -119,4 +119,59 @@ i.fa-star.checked {color: var(--cl-rating-star-checked);}
 
 .cast-container p {
     margin-bottom: 5px;
+}
+
+/**** email */
+.email {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*.btn {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap; !* Allows the button content to wrap onto new lines *!*/
+/*    white-space: normal; !* Allows the text to wrap to a new line *!*/
+/*    word-wrap: break-word; !* Breaks words to prevent overflow *!*/
+/*    width: 100%; !* Ensures the button takes up the full width of its container *!*/
+/*    padding: 10px 20px; !* Adjust padding as needed *!*/
+/*}*/
+
+/**** button shrink */
+
+.dropdown {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+}
+
+
+@media (max-width: 600px) {
+    .btn {
+        max-width: 90%;
+        padding: 8px 16px; /* Smaller padding */
+        font-size: 14px; /* Smaller font size */
+        display: flex;
+        flex-wrap: wrap; /* Allows the button content to wrap onto new lines */
+        white-space: normal; /* Allows the text to wrap to a new line */
+        word-wrap: break-word; /* Breaks words to prevent overflow */
+        justify-content: center; /* Centers the text horizontally */
+
+
+    }
+}
+
+
+/* Button size for screens even smaller */
+@media (max-width: 400px) {
+    .btn {
+        /*max-width: 90%;*/
+        padding: 6px 12px; /* Even smaller padding */
+        font-size: 12px; /* Even smaller font size */
+        /*display: flex;*/
+        /*flex-wrap: wrap; !* Allows the button content to wrap onto new lines *!*/
+        /*white-space: normal; !* Allows the text to wrap to a new line *!*/
+        /*word-wrap: break-word; !* Breaks words to prevent overflow *!*/
+        /*justify-self: center; !* Centers the text horizontally *!*/
+
+    }
 }

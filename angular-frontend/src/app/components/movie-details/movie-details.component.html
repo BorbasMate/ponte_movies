@@ -19,7 +19,6 @@
                                (click)="increaseIndex()"></i></span>
     </div>
 
-
     <div class="card-body">
         <h5 class="card-title">{{ 'Description' }}</h5>
         <p class="card-text">{{movieListItem.overView}}</p>
@@ -27,72 +26,100 @@
         <h6 class="card-title"> {{ 'Original language: '}}{{movieListItem.originalLanguage}}</h6>
         <h5 class="card-title">{{ 'Cast' }}</h5>
         <div class="cast-container">
-            <p *ngFor="let actor of movieListItem.cast">{{ actor }},</p>
+            <p *ngFor="let actor of movieListItem.cast; let last = last">
+                {{ actor }}
+                <ng-container *ngIf="!last">,</ng-container>
+            </p>
         </div>
         <h5 class="card-title">{{ 'Production Companies' }}</h5>
         <div class="cast-container">
-            <p *ngFor="let company of movieListItem.productionCompanies">{{ company }},</p>
+            <p *ngFor="let company of movieListItem.productionCompanies; let last = last">
+                {{ company }}
+                <ng-container *ngIf="!last">,</ng-container>
+            </p>
         </div>
 
     </div>
 
     <div class="card product-card-middle"></div>
 
-    <!--    <div class="ratings" *ngIf="isLoggedIn()">-->
-    <!--        <form (ngSubmit)="submit()" [formGroup]="ratingForm" id="ratingForm">-->
-    <!--            <div class="dropdown">-->
-    <!--                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"-->
-    <!--                        (click)="ratingForm.get('ratingValue').markAsTouched()">-->
-    <!--                    {{ 'Rate this product!' | translate }} {{productListItem.name}}-->
-    <!--                    <span class="caret"></span></button>-->
-    <!--                <ul class="dropdown-menu">-->
-    <!--                    <li>-->
-    <!--                        <button class="dropdown-item" type="button" (click)="setRating(1)">1</button>-->
-    <!--                    </li>-->
-    <!--                    <li>-->
-    <!--                        <button class="dropdown-item" type="button" (click)="setRating(2)">2</button>-->
-    <!--                    </li>-->
-    <!--                    <li>-->
-    <!--                        <button class="dropdown-item" type="button" (click)="setRating(3)">3</button>-->
-    <!--                    </li>-->
-    <!--                    <li>-->
-    <!--                        <button class="dropdown-item" type="button" (click)="setRating(4)">4</button>-->
-    <!--                    </li>-->
-    <!--                    <li>-->
-    <!--                        <button class="dropdown-item" type="button" (click)="setRating(5)">5</button>-->
-    <!--                    </li>-->
-    <!--                </ul>-->
-    <!--                <br>-->
-    <!--                <small *ngIf="ratingForm.get('ratingValue').touched && ratingForm.get('ratingValue').invalid"-->
-    <!--                       class="text-danger">{{ 'Please select a rating' | translate }}</small>-->
-    <!--            </div>-->
-    <!--            <div *ngIf="ratingForm.get('ratingValue').value" id="rating">-->
-    <!--                <i class="fas fa-star checked" *ngFor="let e of [].constructor(this.ratingForm.get('ratingValue').value);"></i>-->
-    <!--                <i class="far fa-star" *ngFor="let e of [].constructor(5 - this.ratingForm.get('ratingValue').value);"></i>-->
-    <!--            </div>-->
-    <!--            <br>-->
-    <!--            <div>-->
-    <!--        <textarea maxlength="254" id="comment" [placeholder]="'Share your opinion!' | translate"-->
-    <!--                  formControlName="text"></textarea>-->
-    <!--            </div>-->
-    <!--            <button class="btn btn-primary">{{'Save Rating' | translate}}</button>-->
-    <!--        </form>-->
-    <!--    </div>-->
+    <div class="ratings">
+        <h4>Rate this Movie!</h4>
+        <form (ngSubmit)="submit()" [formGroup]="ratingForm" id="ratingForm">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                        (click)="ratingForm.get('ratingValue')?.markAsTouched()">{{movieListItem.title}}
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <button class="dropdown-item" type="button" (click)="setRating(1)">1</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button" (click)="setRating(2)">2</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button" (click)="setRating(3)">3</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button" (click)="setRating(4)">4</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button" (click)="setRating(5)">5</button>
+                    </li>
+                </ul>
+                <br>
+                <small *ngIf="ratingForm.get('ratingValue')?.touched && ratingForm.get('ratingValue')?.invalid"
+                       class="text-danger">{{ 'Please select a rating' }}</small>
+            </div>
+            <div *ngIf="ratingForm.get('ratingValue')?.value" id="rating">
+                <i class="fas fa-star checked"
+                   *ngFor="let e of [].constructor(this.ratingForm.get('ratingValue')?.value);"></i>
+                <i class="far fa-star"
+                   *ngFor="let e of [].constructor(5 - this.ratingForm.get('ratingValue')?.value);"></i>
+            </div>
+            <br>
+            <div>
+            <textarea maxlength="254" id="comment" [placeholder]="'Share your opinion!'"
+                      formControlName="text"></textarea>
+            </div>
 
-    <!--    <div class="rating-list">-->
-    <!--        <h2>{{ 'Ratings:' | translate }}</h2>-->
-    <!--        <div *ngIf="errorMessage" class="no-rating">{{ errorMessage | translate }}</div>-->
-    <!--        <div class="card card-primary rating-card" *ngFor="let ratingListItem of ratingListItems">-->
-    <!--            <div class="card-header rating-card-header">{{ ratingListItem.author }}-->
-    <!--                <span class="card-title rating-card-title">-->
+            <div class="mb-3 email">
+                <label for="email" class="form-label"
+                       [ngClass]="{'text-danger': ratingForm.get('email')?.invalid &&
+              ratingForm.get('email')?.touched}">{{ 'your email' }}</label>
+                <input type="email" id="email" formControlName="email"
+                       name="email" [placeholder]="'please enter your email'" class="form-control"
+                       [ngClass]="{'is-invalid': ratingForm.get('email')?.invalid && ratingForm.get('email')?.touched}">
 
-    <!--          <i class="fas fa-star checked" *ngFor="let e of [].constructor(ratingListItem.ratingValue)"></i>-->
-    <!--          <i class="far fa-star" *ngFor="let e of [].constructor(5 - ratingListItem.ratingValue)"></i>-->
+                <small
+                        *ngIf="ratingForm.get('email')?.invalid && ratingForm.get('email')?.touched && !ratingForm.get('email')?.errors?.['serverError']"
+                        class="text-danger">{{ 'Invalid email format' }}</small>
+                <small *ngIf="ratingForm.get('email')?.errors?.['serverError']" class="text-danger">
+                    {{ratingForm.get('email')?.getError('serverError')}}</small>
+            </div>
 
-    <!--        </span>-->
-    <!--            </div>-->
-    <!--            <div class="card-body rating-card-body">{{ ratingListItem.text }}</div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+
+            <div class="dropdown">
+                <button class="btn btn-primary">{{'Save Rating'}}</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="rating-list">
+        <h2>{{ 'Ratings:' }}</h2>
+        <div *ngIf="errorMessage" class="no-rating">{{ errorMessage }}</div>
+        <div class="card card-primary rating-card" *ngFor="let ratingListItem of ratingListItems">
+            <div class="card-header rating-card-header">{{ ratingListItem.email }}
+                <span class="card-title rating-card-title">
+
+              <i class="fas fa-star checked" *ngFor="let e of [].constructor(ratingListItem.ratingValue)"></i>
+              <i class="far fa-star" *ngFor="let e of [].constructor(5 - ratingListItem.ratingValue)"></i>
+
+            </span>
+            </div>
+            <div class="card-body rating-card-body">{{ ratingListItem.text }}</div>
+        </div>
+    </div>
 
 </div>
