@@ -1,0 +1,4 @@
+.app_container {
+  padding: var(--app-padding);
+  margin: var(--app-margin) 0;
+}
